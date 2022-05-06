@@ -1,13 +1,8 @@
-import type { NextPage } from 'next'
 import Head from 'next/head'
-import { PostCard, PostWidget, Categories } from '../components'
-const posts =[
-  {title: "GraphQL", excerpt: "Learn GraphQL"},
-  {title: "GraphQL with NextJS", excerpt: "Learn GraphQL with NextJS"}
+import { PostCard, PostWidget, Categories } from '../components';
+import {getPosts} from '../services'
 
-]
-
-const Home: NextPage = () => {
+export default function Home ({posts}){
   return (
     <div className="container mx-auto px-10 mb-8">
       <Head>
@@ -16,9 +11,11 @@ const Home: NextPage = () => {
       </Head>
     <div className='grid grid-cols-1 lg:grid-cols-12 gap-12' >
       <div className='lg:col-span-8 col-span-1'>
-      {posts.map((post)=>(
-        <PostCard key={post.title} post={post}/>
-      ))}
+        {posts.map((post)=>(
+          <div>
+            <PostCard post={post.node} />
+          </div>
+        ))}
       </div>
       <div className='lg:col-span-4 col-span-1' >
         <div className='lg:sticky relative top-8' >
@@ -30,6 +27,14 @@ const Home: NextPage = () => {
     </div>
 
   )
-}
+};
 
-export default Home
+
+export async function getStaticProps(){
+  const posts = (await getPosts()) || [];
+  return {
+    props:{
+      posts
+    }
+  }
+}
