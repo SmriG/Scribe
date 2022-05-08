@@ -3,11 +3,11 @@ import moment from 'moment';
 import Link from 'next/link';
 import { getRecentPosts, getSimilarPosts } from '../services';
 
-const PostWidget = ({catergories, slug}) => {
+const PostWidget = ({categories, slug}) => {
   const [relatedPosts, setRelatedPosts] = useState([]);
   useEffect(()=>{
     if(slug){
-      getSimilarPosts(category, slug)
+      getSimilarPosts(categories, slug)
       .then((result)=> setRelatedPosts(result))
     }else{
       getRecentPosts()
@@ -15,7 +15,6 @@ const PostWidget = ({catergories, slug}) => {
 
     }
   }, [slug]);
-  console.log(relatedPosts)
   return (
     <div className='bg-white shadow-lg rounded-lg p-8 mb-8' >
       <h3 className='text-xl mb-8 font-semibold border-b pb-4' >
