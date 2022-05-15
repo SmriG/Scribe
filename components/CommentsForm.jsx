@@ -6,9 +6,9 @@ const CommentsForm = ({slug}) => {
   const [localStorage, setLocalStorage] = useState(null);
   const [showSuccessMesssage, setShowSuccessMesssage] = useState(false);
   const [formData, setFormData] = useState({
-    name: null,
-    email: null,
-    comment: null,
+    name: '',
+    email: '',
+    comment: '',
     storeData: false
   })
   useEffect(() => {
@@ -19,8 +19,6 @@ const CommentsForm = ({slug}) => {
       storeData: window.localStorage.getItem('name') || window.localStorage.getItem('email')
 
     }
-    // nameEl.current.value = localStorage.getItem('name');
-    // emailEl.current.value = localStorage.getItem('email')
     setFormData(initialFormData);
   
   }, [])
@@ -53,7 +51,7 @@ const CommentsForm = ({slug}) => {
       email,
       slug: slug
     }
-    if(storeData.current.value){
+    if(formData.storeData){
       localStorage.setItem('name', name);
       localStorage.setItem('email', email)
 
@@ -77,9 +75,9 @@ const CommentsForm = ({slug}) => {
       <h3 className='text-xl mb-8 font-semibold border-b pb-4 '>Thoughts?</h3>
       <div className='grid grid-cols-1 gap-4 mb-4'>
         <textarea 
+          placeholder='Comment'
           value={formData.comment} 
           className='p-4 outline-none w-full rounded-lg focus:ring-2 focus:ring-gray-200 bg-gray-100 text-gray-700' 
-          placeholder='Comment'
           name='comment'
           onChange={onInputChange}
         />

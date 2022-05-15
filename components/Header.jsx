@@ -8,7 +8,7 @@ const Header = () => {
     getCategories()
       .then((newCategories) => setCategories(newCategories));
 
-  }, [categories])
+  }, [])
 
   return (
     <div className='container mx-auto px-10 mb-8' >
