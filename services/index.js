@@ -158,3 +158,60 @@ export const getComments = async (slug) => {
     return result.comments;
 
 };
+
+export const getFeaturedPosts = async () => {
+    const query = gql`
+    query GET_FEATURED_POSTS{
+        posts(where:{featuredPost: true}){
+            author {
+                name
+                photo {
+                  url
+                }
+              }
+              featuredImage {
+                url
+              }
+              title
+              slug
+              createdAt
+        }
+    }
+    `
+    const result = await request(graphqlAPI, query);
+    return result.posts;
+
+}
+
+export const getCategoryPost  = async (slug) =>{
+    const query = gql`
+    query GET_CATEGORY_POST($slug:String!){
+        categories(where: {slug: $slug}) {
+            posts {
+              author {
+                id
+                name
+                photo {
+                  url
+                }
+              }
+              createdAt
+              excerpt
+              featuredImage {
+                url
+              }
+              title
+              slug
+              categories {
+                name
+                slug
+              }
+            }
+            id
+            name
+          }
+        }
+    `
+    const result = await request(graphqlAPI, query, {slug});
+    return result.categories;
+}
