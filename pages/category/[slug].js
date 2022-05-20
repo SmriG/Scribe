@@ -14,8 +14,6 @@ const CategoryPosts = ({posts}) => {
 
 export default CategoryPosts;
 
-// This is going to give only the posts with same category
-
 export async function getStaticProps({ params }) {
     const posts = await getCategoryPost(params.slug);
     console.log(posts)
