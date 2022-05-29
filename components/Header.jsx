@@ -16,7 +16,7 @@ const Header = () => {
         <div className='block text-center' >
           <Link href="/" >
             <span className='font-serif cursor-pointer font-bold text-4xl text-white' >
-              S-C-I-R-B-E
+              S-C-R-I-B-E
             </span>
           </Link>
         </div>
