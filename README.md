@@ -9,3 +9,4 @@ Scribe is a modern blogging app which is built with latest technologies like Nex
 NextJS
 GraphQL
 GraphCMS
+Tailwind CSS
